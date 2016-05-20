@@ -46,6 +46,7 @@
     "watchify": "^3.7.0"
   },
   "browser": {
-    "classes": "./src/Units.js"
+    "classes_ES6": "./src/Units_ES6.js",
+    "classes_ES5": "./src/Units_ES5.js"
   }
 }

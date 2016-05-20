@@ -1,7 +1,7 @@
-import {Unit} from "../src/Units";
-import {Platoon} from "../src/Units";
-import {Company} from "../src/Units";
-import {Battalion} from "../src/Units";
+import {Unit} from "../src/Units_ES6";
+import {Platoon} from "../src/Units_ES6";
+import {Company} from "../src/Units_ES6";
+import {Battalion} from "../src/Units_ES6";
 
 chai.config.includeStack = true;
 
