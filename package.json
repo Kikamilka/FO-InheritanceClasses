@@ -46,6 +46,6 @@
     "watchify": "^3.7.0"
   },
   "browser": {
-    "FO-classes: "./src/Units.js"
+    "classes": "./src/Units.js"
   }
 }

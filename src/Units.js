@@ -1,4 +1,5 @@
-"use strict"
+//"use strict"
+
 class Unit {
 	constructor (strength) {
     this.strength  = strength; // strength - количество боевых единиц
@@ -15,13 +16,13 @@ class Unit {
 }
 
 // взвод - из боевых единиц
-class Platoon extends Unit {
+export class Platoon extends Unit {
 	constructor (units) {
 		if (units >= 10 && units <= 15) {
 			super(units);
 		}
 		else {
-			throw new Error ("Illegal strength for Platoon");
+			throw new RangeError ("Illegal strength for Platoon");
 		}
 	}
 	add (units) {
@@ -32,13 +33,13 @@ class Platoon extends Unit {
 			super.add(strengthNewUnits);
 		}
 		else {
-			throw new Error ("Too much strength for addition");
+			throw new RangeError ("Too much strength for addition");
 		}
 	}
 }
 
 // рота - из взводов
-class Company extends Unit {
+export class Company extends Unit {
 	constructor (units) {
 		if (units instanceof Array) {
 			if (units.every(function(item){return item instanceof Platoon;})) {
@@ -48,15 +49,15 @@ class Company extends Unit {
 				}
 				else {
 					console.log(Company.getTotalStrength(units));
-					throw new Error ("Illegal strength for Company");
+					throw new RangeError ("Illegal strength for Company");
 				}
 			}
 			else {				
-				throw new Error ("Illegal type of Array (should be array of Platoon)");
+				throw new TypeError ("Illegal type of Array (should be array of Platoon)");
 			}
 		}
 		else {
-			throw new Error ("Illegal type objects (should be Array)");			
+			throw new TypeError ("Illegal type objects (should be Array)");			
 		}
 	}	
 	add (units) {
@@ -66,15 +67,15 @@ class Company extends Unit {
 					super.add(Company.getTotalStrength(units));
 				}
 				else {
-					throw new Error ("Too much strength for addition");
+					throw new RangeError ("Too much strength for addition");
 				}
 			}
 			else {
-				throw new Error ("Illegal type of Array (should be array of Platoon)");
+				throw new TypeError ("Illegal type of Array (should be array of Platoon)");
 			}
 		}
 		else {
-			throw new Error ("Illegal type objects (should be Array or number units)");
+			throw new TypeError ("Illegal type objects (should be Array or number units)");
 		}
 	}
 	static getTotalStrength (platoons) {
@@ -86,7 +87,7 @@ class Company extends Unit {
 }
 
 // батальон - из рот и/или взводов
-class Battalion extends Unit {
+export class Battalion extends Unit {
 	constructor (units) {
 		if (units instanceof Array) {
 			if (units.every(function(item){return (item instanceof Platoon || item instanceof Company);})) {
@@ -96,15 +97,15 @@ class Battalion extends Unit {
 				}
 				else {
 					console.log(Battalion.getTotalStrength(units));
-					throw new Error ("Illegal strength for Company");
+					throw new RangeError ("Illegal strength for Company");
 				}
 			}
 			else {
-				throw new Error ("Illegal type of Array (should be array of Company or Platoon)");
+				throw new TypeError ("Illegal type of Array (should be array of Company or Platoon)");
 			}
 		}
 		else {
-			throw new Error ("Illegal type objects (should be Array or number units)");			
+			throw new TypeError ("Illegal type objects (should be Array or number units)");			
 		}
 	}	
 	add (units) {
@@ -114,15 +115,15 @@ class Battalion extends Unit {
 					super.add(Battalion.getTotalStrength(units));
 				}
 				else {
-					throw new Error ("Too much strength for addition");
+					throw new RangeError ("Too much strength for addition");
 				}
 			}
 			else {
-				throw new Error ("Illegal type of Array (should be array of Company or Platoon)");
+				throw new TypeError ("Illegal type of Array (should be array of Company or Platoon)");
 			}
 		}
 		else {
-			throw new Error ("Illegal type objects (should be Array)");
+			throw new TypeError ("Illegal type objects (should be Array)");
 		}
 	}
 	static getTotalStrength (units) {
