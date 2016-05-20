@@ -20,7 +20,6 @@ export function Platoon (units) {
 	}
 }
 Platoon.prototype = Object.create(Unit.prototype);
-Platoon.prototype.constructor = Platoon;
 Platoon.prototype.add = function (units) {
 	var strengthNewUnits = units.reduce(function(sum, current) {
 		return sum + parseInt(current);
@@ -47,7 +46,6 @@ export function Company (units) {
 	}
 }	
 Company.prototype = Object.create(Unit.prototype);
-Company.prototype.constructor = Company;
 Company.prototype.add = function (units) {
 	if (isArray(units)) {
 		if (units.every(function(item){return item instanceof Platoon;})) {
@@ -75,7 +73,6 @@ export function Battalion (units) {
 	}
 }	
 Battalion.prototype = Object.create(Unit.prototype);
-Battalion.prototype.constructor = Battalion;
 Battalion.prototype.add = function (units) {
 	if (isArray(units)) {
 		if (units.every(function(item){return (item instanceof Platoon || item instanceof Company);})) {
